@@ -9,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.SimpleTimeZone;
+
 
 /**
  * Created by android on 9/21/2016.
@@ -38,11 +42,30 @@ public class customadapter extends ArrayAdapter<customclass>  {
 
         place.setText(""+currentlist.getPlace());
 
+        TextView date = (TextView) listitemview.findViewById(R.id.date);
+
+        Date dateobject = new Date(currentlist.getTime());
+
+        String formatteddate = formatDate(dateobject);
+
+        date.setText(formatteddate);
+
         TextView time = (TextView) listitemview.findViewById(R.id.time);
 
-        time.setText(""+currentlist.getDate());
+        String timeformate = formatTime(dateobject);
+
+        time.setText(timeformate);
 
         return listitemview;
 
+    }
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+        return dateFormat.format(dateObject);
+    }
+
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        return timeFormat.format(dateObject);
     }
 }

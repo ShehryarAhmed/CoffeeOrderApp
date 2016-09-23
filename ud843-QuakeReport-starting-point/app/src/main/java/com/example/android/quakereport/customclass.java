@@ -12,14 +12,13 @@ public class customclass  {
 
     private String place;
 
-    private String date;
+    private long time;
 
-    private Time time;
 
-    public customclass(final double magnitude, final String place, final String date){
+    public customclass(final double magnitude, final String place, final long time){
         this.magnitude = magnitude;
         this.place = place;
-        this.date = date;
+        this.time = time;
 
     }
 
@@ -31,9 +30,12 @@ public class customclass  {
         return place;
     }
 
-    public String getDate() {
-        return date;
+    public long getTime() {
+        return time;
     }
+
+
+
 
 
 }
