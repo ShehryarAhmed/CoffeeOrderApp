@@ -19,6 +19,12 @@ import java.util.SimpleTimeZone;
  */
 public class customadapter extends ArrayAdapter<customclass>  {
 
+    private static final String LOCATION_SEPARATER = " of ";
+
+    private String primaryLocation;
+
+    private String locationOffset;
+
     public customadapter(Activity activity, ArrayList<customclass> arrayList){
         super(activity,0,arrayList);
     }
@@ -38,9 +44,18 @@ public class customadapter extends ArrayAdapter<customclass>  {
 
         magnitude.setText(""+currentlist.getMagnitude());
 
+        String OrignalLocation = currentlist.getPlace();
+
+        split(OrignalLocation,LOCATION_SEPARATER);
+
+
+        TextView near = (TextView) listitemview.findViewById(R.id.near);
+
+        near.setText(locationOffset);
+
         TextView place = (TextView) listitemview.findViewById(R.id.place);
 
-        place.setText(""+currentlist.getPlace());
+        place.setText(primaryLocation);
 
         TextView date = (TextView) listitemview.findViewById(R.id.date);
 
@@ -67,5 +82,17 @@ public class customadapter extends ArrayAdapter<customclass>  {
     private String formatTime(Date dateObject) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         return timeFormat.format(dateObject);
+    }
+
+    private void split(String Orignallocation, final String separater){
+        if(Orignallocation.contains(separater)) {
+            String nowsplit[] = Orignallocation.split(separater);
+            locationOffset = nowsplit[0] += separater;
+            primaryLocation = nowsplit[1];
+        }
+        else {
+            locationOffset = getContext().getString(R.string.Near_the);
+            primaryLocation = Orignallocation;
+        }
     }
 }
