@@ -14,12 +14,16 @@ public class customclass  {
 
     private long time;
 
-
-    public customclass(final double magnitude, final String place, final long time){
+private String url;
+    public customclass(final double magnitude, final String place, final long time, final String URL){
         this.magnitude = magnitude;
         this.place = place;
         this.time = time;
+        this.url = URL;
+    }
 
+    public String getUrl() {
+        return url;
     }
 
     public double getMagnitude() {

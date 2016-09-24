@@ -70,7 +70,9 @@ public final class QueryUtils {
 
                 long timemilsecond = properties.getLong("time");
 
-                customclass object = new customclass(mag,place,timemilsecond);
+                String url = properties.getString("url");
+
+                customclass object = new customclass(mag,place,timemilsecond,url);
 
                 earthquakes.add(object);
             }
